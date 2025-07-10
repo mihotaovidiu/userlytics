@@ -28,16 +28,29 @@ import { join } from 'path';
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        host: config.get('DB_HOST'),
-        port: config.get<number>('DB_PORT'),
-        username: config.get('DB_USERNAME'),
-        password: config.get('DB_PASSWORD'),
-        database: config.get('DB_NAME'),
-        entities: [__dirname + '/**/*.entity.{ts,js}'],
-        synchronize: true,
-      }),
+      useFactory: (config: ConfigService) => {
+        const dbUrl = config.get('DB_URL');
+        if (dbUrl) {
+          return {
+            type: 'postgres',
+            url: dbUrl,
+            autoLoadEntities: true,
+            synchronize: true,
+          };
+        }
+
+        return {
+          type: 'postgres',
+          host: config.get('DB_HOST'),
+          port: +config.get('DB_PORT'),
+          username: config.get('DB_USERNAME'),
+          password: config.get('DB_PASSWORD'),
+          database: config.get('DB_NAME'),
+          entities: [__dirname + '/**/*.entity.{ts,js}'],
+          synchronize: true,
+        };
+
+      },
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'client', 'dist', 'dashboard', 'browser'),
