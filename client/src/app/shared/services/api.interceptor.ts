@@ -4,7 +4,7 @@ import {
 
 
 export const apiInterceptor: HttpInterceptorFn = (req, next) => {
-    const apiBaseUrl = 'https://userlytics-production.up.railway.app/api';
+    const apiBaseUrl = 'https://userlytics-production.up.railway.app';
     if (req.url.startsWith('http')) {
         return next(req);
     }
