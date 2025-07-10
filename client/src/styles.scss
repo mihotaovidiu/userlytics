@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use 'primeicons/primeicons.css';
+@use './styles/common.scss';
+
+:root {
+    --body-margin: 16px;
+    --page-section-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    --page-background: var(--p-indigo-50);
+    --page-section-background: #fff;
+    --page-section-border-radius: 16px;
+    --app-font-family: 'Inter', sans-serif;
+    --color-white: #fff;
+    --elements-gap: 16px;
+    --elements-border-radius: 16px;
+}
+
+body {
+    margin: var(--body-margin);
+    background-color: var(--page-background);
+    font-family: var(--app-font-family);
+
+}

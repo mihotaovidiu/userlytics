@@ -1,0 +1,54 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="register-form">
+    <div class="register-form__fields">
+        <p-iftalabel class="register-form__fields--field">
+            <label for="name">Name</label>
+            <input fluid id="name" type="text" pInputText formControlName="name" />
+            <div class="register-form__fields--field__error">
+                <p-message
+                    *ngIf="form.get('name')?.errors?.['required'] && (form.get('name')?.dirty || form.get('name')?.touched)"
+                    severity="error" size="small" variant="simple">Name is required.</p-message>
+            </div>
+        </p-iftalabel>
+        <p-iftalabel class="register-form__fields--field">
+            <label for="email">Email</label>
+            <input fluid id="email" type="email" pInputText formControlName="email" />
+            <div class="register-form__fields--field__error">
+                <p-message
+                    *ngIf="form.get('email')?.errors?.['required'] && (form.get('email')?.dirty || form.get('email')?.touched)"
+                    severity="error" size="small" variant="simple">Email is required.</p-message>
+                <p-message
+                    *ngIf="form.get('email')?.errors?.['email'] && (form.get('email')?.dirty || form.get('email')?.touched)"
+                    severity="error" size="small" variant="simple">Invalid email format.</p-message>
+            </div>
+        </p-iftalabel>
+        <p-iftalabel class="register-form__fields--field">
+            <p-password fluid inputId="password" formControlName="password" [feedback]="true" autocomplete="off"
+                [toggleMask]="true"></p-password>
+            <label for="password">Password</label>
+            <div class="register-form__fields--field__error">
+                <p-message
+                    *ngIf="form.get('password')?.errors?.['required'] && (form.get('password')?.dirty || form.get('password')?.touched)"
+                    severity="error" size="small" variant="simple">Password is required.</p-message>
+            </div>
+        </p-iftalabel>
+        <p-iftalabel class="register-form__fields--field">
+            <p-password fluid inputId="confirmPassword" formControlName="confirmPassword" [feedback]="true"
+                autocomplete="off" [toggleMask]="true"></p-password>
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="register-form__fields--field__error">
+                <p-message
+                    *ngIf="form.get('confirmPassword')?.errors?.['required'] && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)"
+                    severity="error" size="small" variant="simple">Confirm password is required.</p-message>
+                <p-message
+                    *ngIf="form.errors?.['passwordsMismatch'] && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)"
+                    severity="error" size="small" variant="simple">Passwords do not match.</p-message>
+            </div>
+        </p-iftalabel>
+        <div class="register-form__actions">
+            <p-button fluid type="submit" label="Register" [disabled]="form.invalid || (loading$ | async)"></p-button>
+        </div>
+        <div *ngIf="error$ | async as error">
+            <p-message severity="error" size="small" variant="text">{{ error?.message || error }}</p-message>
+        </div>
+    </div>
+</form>

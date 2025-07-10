@@ -1,0 +1,15 @@
+<div class="authentication-page">
+    <app-logo [inverted]="true"></app-logo>
+    <p-panel [header]="shouldShowLogin ? 'Login' : 'Register'" class="authentication-page__content">
+        <app-login *ngIf="shouldShowLogin" (showRegister)="onPresentRegister()"></app-login>
+        <app-register *ngIf="shouldShowRegister" (showLogin)="onPresentLogin()"></app-register>
+
+        <div class="authentication-page__contextswitch">
+            <div class="authentication-page__contextswitch--text">
+                {{ shouldShowLogin ? 'New user?' : 'Already have an account?' }}
+            </div>
+            <p-button *ngIf="shouldShowLogin" variant="text" label="Register" (click)="onPresentRegister()"></p-button>
+            <p-button *ngIf="shouldShowRegister" variant="text" label="Login" (click)="onPresentLogin()"></p-button>
+        </div>
+    </p-panel>
+</div>

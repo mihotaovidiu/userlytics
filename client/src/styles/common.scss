@@ -1,0 +1,37 @@
+.custom-dataview {
+    display: block;
+
+    .custom-data-list {
+        display: flex;
+        align-items: center;
+        gap: var(--elements-gap);
+        flex-direction: column;
+
+        &__item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: var(--elements-gap);
+
+            &--content {
+                display: flex;
+                justify-content: space-between;
+                flex: 1;
+                align-items: center;
+
+                &__actions {
+                    display: flex;
+                    align-items: center;
+                    gap: var(--elements-gap);
+                }
+            }
+        }
+    }
+
+    .custom-paginator {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

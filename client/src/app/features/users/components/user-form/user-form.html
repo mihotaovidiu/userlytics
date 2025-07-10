@@ -1,0 +1,44 @@
+<ng-container *ngIf="form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="user-form">
+        <div class="user-form__fields">
+            <div class="col">
+                <p-iftalabel class="user-form__fields--field">
+                    <label for="nameRef">Name</label>
+                    <input fluid id="nameRef" type="text" pInputText formControlName="name" />
+                    <div class="user-form__fields--field__error">
+                        <p-message *ngIf="form.get('name')?.errors?.['required']" severity="error" size="small"
+                            variant="simple">Name is required.</p-message>
+                    </div>
+                </p-iftalabel>
+                <p-iftalabel class="user-form__fields--field">
+                    <label for="emailRef">Email</label>
+                    <input fluid id="emailRef" type="email" pInputText formControlName="email" [readonly]="true" />
+                    <div class="user-form__fields--field__error">
+
+                        <p-message *ngIf="form.get('email')?.errors?.['required']" severity="error" size="small"
+                            variant="simple">Email is required.</p-message>
+                        <p-message *ngIf="form.get('email')?.errors?.['email']" severity="error" size="small"
+                            variant="simple">Invalid email format.</p-message>
+                    </div>
+
+                </p-iftalabel>
+            </div>
+            <p-divider layout="vertical"></p-divider>
+            <div class="col">
+                <p-iftalabel class="user-form__fields--field">
+                    <p-select fluid inputId="roleRef" formControlName="role" [options]="roleOptions"
+                        placeholder="Select a role"></p-select>
+                    <label for="roleRef">Role</label>
+                    <div class="user-form__fields--field__error">
+                        <p-message *ngIf="form.get('role')?.errors?.['required']" severity="error" size="small"
+                            variant="simple">Role is required.</p-message>
+                    </div>
+                </p-iftalabel>
+            </div>
+        </div>
+        <div class="user-form__actions">
+            <p-button fluid type="submit" label="Save" [disabled]="form.invalid"></p-button>
+            <p-button fluid type="button" label="Cancel" [outlined]="true" (click)="onCancel()"></p-button>
+        </div>
+    </form>
+</ng-container>

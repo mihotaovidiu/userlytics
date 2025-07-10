@@ -1,0 +1,49 @@
+:host {
+    --p-panel-border-radius: var(--page-section-border-radius);
+    --p-panel-background: var(--page-section-background);
+    --p-toolbar-background: var(--page-section-background);
+    --p-toolbar-border-radius: var(--page-section-border-radius);
+    --p-panel-content-padding: 0;
+    --p-panel-header-padding: 0;
+    --p-panel-footer-padding: 0;
+}
+
+.dashboard-page {
+    height: calc(100vh - calc(var(--body-margin) * 2));
+    display: flex;
+    flex-direction: row;
+
+    &__sidenav {
+        width: 250px;
+        padding: 16px;
+        box-shadow: var(--page-section-shadow);
+        margin: 16px;
+        border: none;
+        position: relative;
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        &--toolbar {
+            border: none;
+            box-shadow: var(--page-section-shadow);
+            margin: 16px;
+        }
+
+        &--views {
+            box-shadow: var(--page-section-shadow);
+            border-radius: var(--p-panel-border-radius);
+            background-color: var(--page-section-background);
+            flex: 1;
+            padding: 16px;
+            margin: 16px;
+
+            .p-scrollpanel {
+                height: 100%;
+            }
+        }
+    }
+}

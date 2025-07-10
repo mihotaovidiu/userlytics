@@ -1,0 +1,19 @@
+<div class="dashboard-page">
+    <p-panel class="dashboard-page__sidenav">
+        <ng-template #header><app-logo></app-logo></ng-template>
+        <p-divider></p-divider>
+        <app-sidenav></app-sidenav>
+
+        <ng-template #footer>
+            <app-user-box></app-user-box>
+        </ng-template>
+    </p-panel>
+
+    <div class="dashboard-page__content">
+        <div class="dashboard-page__content--views">
+            <p-scrollpanel>
+                <router-outlet></router-outlet>
+            </p-scrollpanel>
+        </div>
+    </div>
+</div>

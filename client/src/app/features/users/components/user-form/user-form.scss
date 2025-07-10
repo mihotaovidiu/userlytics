@@ -1,0 +1,39 @@
+.user-form {
+
+    &__fields {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+
+        .col {
+            flex: 1;
+        }
+
+        &--field {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+
+
+            &__error {
+                margin-left: 0.7rem;
+
+                p-message {
+                    --p-message-text-sm-font-size: 0.7rem;
+                }
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 1rem;
+
+        p-button {
+            margin-right: 0.4rem;
+            min-width: 120px;
+        }
+    }
+}

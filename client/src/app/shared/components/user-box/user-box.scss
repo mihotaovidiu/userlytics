@@ -1,0 +1,40 @@
+.user-box {
+    background-color: var(--p-purple-300);
+    border-bottom-left-radius: var(--elements-border-radius);
+    border-bottom-right-radius: var(--elements-border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--elements-gap);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+
+    &__profile {
+
+        text-align: center;
+
+        &--details {
+            &__name {
+                font-weight: 600;
+                font-size: 1.2rem;
+                color: var(--p-text-color);
+            }
+
+            &__email {
+                font-size: 0.9rem;
+                margin-top: 4px;
+                color: var(--p-text--muted-color);
+            }
+        }
+
+    }
+
+    &__logout {
+        width: 100%;
+        margin-top: var(--elements-gap);
+        --p-button-border-radius: var(--elements-border-radius);
+    }
+}

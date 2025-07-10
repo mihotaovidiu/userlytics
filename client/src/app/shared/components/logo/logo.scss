@@ -1,0 +1,31 @@
+:host {
+    width: 100%;
+    --logo-height: 2.4rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--logo-height);
+    background: var(--p-primary-color);
+    border-radius: var(--elements-border-radius);
+    ;
+
+    &__img {
+    }
+
+    &__text {
+        font-weight: bold;
+        font-size: 1rem;
+        color: var(--color-white);
+    }
+
+    &.logo-inverted {
+        background: transparent;
+
+        .logo__text {
+            color: var(--p-indigo-500)
+        }
+    }
+}

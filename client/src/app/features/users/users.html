@@ -1,0 +1,57 @@
+<div class="users-container">
+    <div class="dataview-actions">
+        <input fluid pInputText type="text" placeholder="Search users..." [(ngModel)]="searchTerm"
+            (ngModelChange)="onSearchChange($event)" />
+    </div>
+    <p-divider></p-divider>
+
+    <p-dataview class="custom-dataview" [value]="(users$ | async) || []" [rows]="pageSize$ | async" [paginator]="true"
+        [totalRecords]="total$ | async" [first]="(((page$ | async) || 1) - 1) * ((pageSize$ | async) || 10)"
+        (onPage)="onPageChange($event)" paginatorStyleClass="custom-paginator">
+        <ng-template #list let-items>
+            <ng-container *ngIf="!(loading$ | async); else skeletonList">
+                <div class="custom-data-list">
+                    <div class="custom-data-list__item" *ngFor="let item of items; trackBy: trackByUserId">
+                        <p-avatar class="custom-data-list__item--avatar" size="large"
+                            [image]="'./img/' + (item.role  === 'admin' ? 'admin-role' : 'user-role') + '.svg'" />
+                        <div class="custom-data-list__item--content">
+                            <div class="custom-data-list__item--content__details">
+                                <div>{{ item.name}}</div>
+                                <div>{{ item.email}}</div>
+                            </div>
+                            <div class="custom-data-list__item--content__actions custom-outline-icon-button-danger">
+                                <ng-container *ngIf="(authUser$ | async)?.role === 'admin'">
+                                    <p-button icon="pi pi-user-edit" severity="success" [outlined]="true"
+                                        (click)="onEditUser(item)" aria-label="Edit user" />
+                                    <p-button icon="pi pi-user-minus" severity="danger" [outlined]="true"
+                                        (click)="onRemoveUser(item)" aria-label="Remove user" />
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #skeletonList>
+                <div class="custom-data-list">
+                    <div class="custom-data-list__item" *ngFor="let i of [1,2,3,4,5]">
+                        <p-skeleton width="3rem" height="3rem" shape="circle" style="margin-right:1rem;"></p-skeleton>
+                        <div class="custom-data-list__item--content">
+                            <div class="custom-data-list__item--content__details">
+                                <p-skeleton width="8rem" style="margin-bottom:0.5rem;"></p-skeleton>
+                                <p-skeleton width="12rem"></p-skeleton>
+                            </div>
+                            <div class="custom-data-list__item--content__actions custom-outline-icon-button-danger">
+                                <p-skeleton width="2rem" height="2rem" style="margin-right:0.5rem;"></p-skeleton>
+                                <p-skeleton width="2rem" height="2rem"></p-skeleton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-template>
+    </p-dataview>
+</div>
+
+<ng-container *ngIf="isDialogOpen">
+    <app-user-dialog [(visible)]="isDialogOpen" [user]="selectedUser"> </app-user-dialog>
+</ng-container>

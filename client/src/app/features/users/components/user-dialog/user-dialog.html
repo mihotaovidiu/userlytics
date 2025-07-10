@@ -1,0 +1,8 @@
+<p-dialog header="Header" [visible]="visible" (visibleChange)="onHide()" [modal]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="false"
+    [resizable]="false">
+    <ng-template pTemplate="header">
+        <h2>{{ user ? (user.id ? 'Edit User' : 'Create User') : 'User Form' }}</h2>
+    </ng-template>
+    <app-user-form [user]="user" (cancel)="onHide()"></app-user-form>
+</p-dialog>

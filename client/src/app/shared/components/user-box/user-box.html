@@ -1,0 +1,19 @@
+<div class="user-box">
+    <div *ngIf="(user$ | async) as user" class="user-box__profile">
+        <div class="user-box__profile--avatar">
+            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                [style]="{ width: '32px', height: '32px' }" />
+        </div>
+        <div class="user-box__profile--details">
+            <div class="user-box__profile--details__name">
+                {{ user?.name }}
+            </div>
+            <div class="user-box__profile--details__email">
+                {{ user?.email }}
+            </div>
+        </div>
+
+    </div>
+    <p-button class="user-box__logout" fluid severity="danger" [outlined]="false" (click)="logout()"
+        aria-label="Logout">Logout</p-button>
+</div>
