@@ -10,6 +10,9 @@
     "watch:prod": "ng build --watch --configuration production",
     "test": "ng test"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "^20.0.0",

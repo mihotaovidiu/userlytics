@@ -16,6 +16,7 @@ import { provideEffects } from '@ngrx/effects';
 import { effects, reducers } from './store';
 import { authTokenInterceptor } from './shared/services/auth-token.interceptor';
 import { errorInterceptor } from './shared/services/error.interceptor';
+import { apiInterceptor } from './shared/services/api.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,7 +32,7 @@ export const appConfig: ApplicationConfig = {
     provideEffects(effects),
     provideAnimations(),
     provideHttpClient(
-      withInterceptors([authTokenInterceptor, errorInterceptor])
+      withInterceptors([apiInterceptor, authTokenInterceptor, errorInterceptor])
     ),
 
   ]
