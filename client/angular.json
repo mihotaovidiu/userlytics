@@ -21,6 +21,7 @@
             "polyfills": [
               "zone.js"
             ],
+            "outputPath": "dist/dashboard/browser",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
